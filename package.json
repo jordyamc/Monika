@@ -1,0 +1,11 @@
+{
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "megadb": "^2.7.0",
+    "request": "^2.88.0"
+  }
+}

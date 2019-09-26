@@ -6,7 +6,7 @@ module.exports = {
   alias:[],
   description:'Información sobre el bot',
   
-  run: (message, client) => {
+  run: (message, args, rolIT, client) => {
     
     let infoembed = new Discord.RichEmbed()
       .setTitle("Información del Bot")

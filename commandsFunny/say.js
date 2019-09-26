@@ -10,7 +10,7 @@ module.exports = {
     
     if(!args[0]) {
       message.channel.send(message.author +", que me quieres hacer decir?")
-    } 
+    }
     
     else if (message.mentions.channels.first() && message.member.roles.has(rolIT.id)) {
       message.mentions.channels.first().send(args.slice(1).join(" "))

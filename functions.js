@@ -21,7 +21,7 @@ module.exports = {
     
     let userTag = message.mentions.users.first()
     
-    var insultos = ["puto", "mamón", "puta", "tpm", "carajo"]
+    var insultos = [" puto ", " mamón ", " puta ", " tpm ", " carajo ", " ctm "]
     var muertes = ["matame", "kill me", "matadme"]
     var castigos = ["&w", "&warn", "&m", "&mute", "&ban", "&temp-ban"]
     var callar = ["callate monika", "callate pesada", 'callate']
@@ -92,6 +92,12 @@ module.exports = {
     else if (muertes.includes(message.content.toLowerCase())) {
       var respuestasMuerte = ["Pobre... No te mereces ni morir", `Tranquil@ ${message.author.toString()}, todo saldrá bien ♡`]
       message.channel.send(respuestasMuerte[Math.floor(Math.random() * respuestasMuerte.length)])
+    }
+    
+    
+    
+    else if (message.content.toLowerCase().includes("alt") && message.content.toLowerCase().includes("f4")){
+      message.channel.send("Alt F4 es la solución")
     }
     
     

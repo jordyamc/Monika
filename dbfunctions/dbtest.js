@@ -4,8 +4,6 @@ const client = new Discord.Client()
 const db = require('megadb')
 let dbTest = new db.crearDB('keys')
 
-const botconfig = require('../config.json')
-
 module.exports = {
   
   function1db: async (message, prefix, rolIT) => {
@@ -23,14 +21,14 @@ module.exports = {
     
     var keys = await dbTest.obtener(`${message.author.id}.key`)
     
-    if (randomStart == "2" && keys == "0"){
+    if (randomStart == "2" && keys == "0" && !(message.member.roles.has(rolIT.id) || message.member.hasPermission('ADMINISTRATOR'))){
       dbTest.sumar(`${message.author.id}.key`, 1)
       return message.channel.send("A partir de ahora te vigilaré!"+ message.author)
     }
     
-    if (message.content.startsWith(prefix +"stop") && keys == "1") {
+    /*if (message.content.startsWith(prefix +"stop") && keys == "1") {
       if (message.member.roles.has(rolIT.id) || message.member.hasPermission('ADMINISTRATOR')){
-        let user = message.mentions.members.first() || message.member || message.mentions.members.first().id
+        let user = message.mentions.members.first() || message.member
         console.log(user.id)
         dbTest.restar(`${user.id}.key`, 1)
         return message.channel.send(user +" fue liberad@ temporalmente")
@@ -40,6 +38,21 @@ module.exports = {
     } else if (randomStop == "2" && keys == "1") {
       dbTest.restar(`${message.author.id}.key`, 1)
       return message.channel.send("Por esta vez te liberaste de mi "+ message.author)
+    }*/
+    
+    if (message.content.startsWith(prefix +"stop")){
+      if (message.member.roles.has(rolIT.id) || message.member.hasPermission('ADMINISTRATOR')){
+        if (message.mentions.members.first()){
+          let user = message.mentions.members.first();
+          dbTest.restar(`${user.id}.key`, 1)
+          return message.channel.send(user +" fue liberad@ temporalmente")
+        }
+      }else if (randomStop == "2" && keys == "1"){
+        dbTest.restar(`${message.author.id}.key`, 1)
+        return message.channel.send("Por esta vez te liberaste de mi "+ message.author)
+      }else {
+        return message.channel.send("Ahora te perseguiré más "+ message.author)
+      }
     }
 
   }

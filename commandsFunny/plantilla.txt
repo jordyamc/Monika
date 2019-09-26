@@ -3,7 +3,7 @@ module.exports = {
   alias:[],
   description:'',
   
-  run: (message) => {
+  run: async (message, args, rolIT, client) => {
   
   }
 }

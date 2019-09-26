@@ -17,7 +17,7 @@ module.exports = {
       return message.channel.send(killEmbed)
     } else {
       let killEmbed = new Discord.RichEmbed()
-		    .setDescription(`Tienes que decirme a quien quieres matar ${message.author}?`)
+		    .setDescription(`Tienes que decirme a quien quieres matar ${message.author}`)
         .setColor('#4d0702')
 		    .setImage(killImg[Math.floor(Math.random() * killImg.length)])
     

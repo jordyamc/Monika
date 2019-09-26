@@ -3,7 +3,7 @@ const client = new Discord.Client()
 
 module.exports = {
   name:'feed',
-  alias:[],
+  alias:['suggest', 'feedback'],
   description:'Sugerencias y/o feedback para ayudar con el bot',
   
   run: (message, args) => {

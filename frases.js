@@ -57,7 +57,7 @@ function frecuenciaMensaje(Action) {
      frecuenciaMensaje: puede ser tener estos valores "siempre", "altaFrecuencia" , "bajaFrecuencia" o muyBajaFrecuencia
     */
   // vegetarianismo
-   if (message.content.toLowerCase().includes("carne") && message.content.toLowerCase().includes("comer") || message.content.toLowerCase().includes("vegetarianismo") || message.content.toLowerCase().includes("vegetariano")  ){
+   if (message.content.toLowerCase().includes("carne") && message.content.toLowerCase().includes("como") || message.content.toLowerCase().includes("vegetarianismo") || message.content.toLowerCase().includes("vegetariano")  ){
   var mensaje = [
     "Leyendo una vez sobre Pitágoras, supe que fue el primer vegetariano reconocido en la historia de Occidente.", 
     "Pitágoras decía  “No mojes nunca tu pan ni en la sangre ni en las lágrimas de tus hermanos. Una dieta vegetariana nos proporciona energía pacífica y amorosa y no sólo a nuestro cuerpo sino sobre todo a nuestro espíritu. Mientras los hombres sigan masacrando y devorando a sus hermanos los animales, reinará en la tierra la guerra y el sufrimiento y se matarán unos a otros, pues aquel que siembra el dolor y la muerte no podrá cosechar ni la alegría ni la paz ni el amor”.", 
@@ -97,8 +97,7 @@ message.content.toLowerCase().includes("no es real")
      /* 
      frecuenciaMensaje: puede ser tener estos valores "siempre", "altaFrecuencia" , "bajaFrecuencia" o muyBajaFrecuencia
     */
-/* frfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfr */    
-    
+/* frfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfr */        
     
   }
 }

@@ -8,12 +8,27 @@ const client = new Discord.Client()
 client.command = new Discord.Collection()
 
 // Command handler
-const commandFiles = fs.readdirSync('./commands').filter((f) => f.endsWith('.js'))
+const commandFun = fs.readdirSync('./commandsFunny').filter((f) => f.endsWith('.js'))
 
-for (const file of commandFiles) {
-	let command = require(`./commands/${file}`)
-	client.command.set(command.name, command)
+for (const fileFun of commandFun) {
+	let commandFunny = require(`./commandsFunny/${fileFun}`)
+	client.command.set(commandFunny.name, commandFunny)
 } 
+
+const commandBank = fs.readdirSync('./commandsEconomy').filter((f) => f.endsWith('.js'))
+
+for (const fileBank of commandBank) {
+	let commandEconomy = require(`./commandsEconomy/${fileBank}`)
+	client.command.set(commandEconomy.name, commandEconomy)
+}
+
+const commandPoll = fs.readdirSync('./commandsPoll').filter((f) => f.endsWith('.js'))
+
+for (const filePoll of commandPoll) {
+  let cmdPoll = require(`./commandsPoll/${filePoll}`);
+  client.command.set(cmdPoll.name, cmdPoll);
+}
+const {ojGame} = require('./oj_game.js')
 
 // Conexiones
 const botconfig = require('./config.json')
@@ -31,19 +46,20 @@ const {frases} = require('./frases.js')
 const {shunika} = require('./shunika.js')
 const {junko} = require('./junko.js')
 
-
-
-const {battlegame1} = require('./games.js')
+const {battlegame} = require('./battlegame.js')
+const {counter} = require('./counter.js')
 
 // Bases de Datos
 let dbprefix = new db.crearDB('prefix')
 let dbTest = new db.crearDB('keys')
 let dbChannelsBL = new db.crearDB('channelBL')
-let bank = new db.crearDB('bank')
+let bank = new db.crearDB('bank1')
 let users =new db.crearDB('users')
+let dbCards = new db.crearDB('oj_cards')
+let dbEditionCards = new db.crearDB('oj_edition')
+
 
 var version = botconfig.version
-
 
 
 // Iniciar el BOT (Información sobre los Servers y el BOT)
@@ -72,6 +88,9 @@ client.on('ready', () => {
 
 // Hablar en el chat
 client.on('message', async (message) => {
+
+  if (message.guild === undefined) return;
+  if (message.author.id === client.user.id) return ;
   
   // Establecer prefijo, command y argumentos
   let prefix
@@ -105,16 +124,14 @@ client.on('message', async (message) => {
   if(message.content=="arrobaprueba"){ 
     
     /* aca dejo como se hace para obtener la id del usuario el cual ha sido tagueado */
-        var idUsuarioTageado = message.mentions.users.first().id;
+        //var idUsuarioTageado = message.mentions.users.first().id;
     /*FIN aca dejo como se hace para obtener la id del usuario el cual ha sido tagueado  */
     
     
     var varNickname = message.member.user.tag;
     if (varNickname == null){
       varNickname = "";}
-    message.channel.send("@"+varNickname)
-    
-    
+    message.channel.send("<@"+varNickname+">")
     
   }
   
@@ -133,34 +150,38 @@ client.on('message', async (message) => {
     }
   }*/
   
+  if (message.content.toLowerCase().startsWith("test")){
+    let userMention = message.mentions.users.first()
+    message.userMention.send("hola")
+  }
   
-  
-  for (let embed of message.embeds) {
+  /*for (let embed of message.embeds) {
     message.channel.send(`
     Title: ${embed.title}
     Author: ${embed.author}
     Description: ${embed.description}
     `);
     //
-  } //
-  
-  for (let field of message.embeds.fields) {
-      message.channel.send(`
-      Field title: ${field.name}
-      Field value: ${field.value} 
-      `);
-    }
+  } //*/
   
   // Ver Prefijo
-  if (message.content.toLowerCase() == ('monika prefix')) {
+  if (message.content.toLowerCase() == 'monika prefix') {
     return message.channel.send('Prefijo actual: **'+prefix+'**')
   }
   
   // Tag al Bot
-  if (message.content.includes(client.user.id) && !message.content.startsWith(prefix)) {
-	  var tagBot = ["**CALLATE** "+ message.author.toString() +" **NO ME IMPORTA!**", "**NO ME TAGEES** "+ message.author.toString() +" **QUE ME LA SUDA!**", "No quiero hablar "+ message.author.toString() +", mal rollo", message.author.toString() +", en serio crees que alguien tan inferior como tu puede hablarme?", message.author.toString() +" "+`<:monikaPing:618889335915413525>`]
+ if (message.content.includes(client.user.id) 
+     && !message.content.startsWith(prefix)) {
+	  var tagBot = [
+      "**CALLATE** "+ message.author.toString() +" **NO ME IMPORTA!**", 
+      "**NO ME TAGEES** "+ message.author.toString() +" **QUE ME LA SUDA!**", 
+      "No quiero hablar "+ message.author.toString() +", mal rollo", 
+      message.author.toString() +", en serio crees que alguien tan inferior como tu puede hablarme?", 
+      message.author.toString() +" "+`<:monikaPing:618889335915413525>`
+    ]
+    
     return message.channel.send(tagBot[Math.floor(Math.random() * tagBot.length)])
-  }
+  } 
   
   // Black List Channels
   const datos = await dbChannelsBL.obtener(message.guild.id)
@@ -172,15 +193,22 @@ client.on('message', async (message) => {
     return
   }
   
+  // Bank
+  economy(message, prefix, rolIT)
+  
   // LO de perseguir
   function1db(message, prefix, rolIT)
-  economy(message)
   
   if(!dbTest.tiene(`${message.author.id}.key`)) return
   var keys = await dbTest.obtener(`${message.author.id}.key`)
   
   if (keys == 1){
-    let followMonika = ['Porque no me liberas de aquí?', 'Solo tienes que saber... Just Monika']
+    let followMonika = [
+      'Porque no me liberas de aquí?', 
+      'Solo tienes que saber... Just Monika',
+      'Pulsa Alt F4 para poder liberarme porfavor'
+    ]
+    
     return message.channel.send(message.author +" "+ followMonika[Math.floor(Math.random() * followMonika.length)])
   }
   
@@ -224,7 +252,19 @@ client.on('message', async (message) => {
       .setFooter("IT Crowd", "https://cdn.discordapp.com/emojis/562075100116156418.png")
   
     return message.channel.send(infoembed)
-  } 
+  }
+  
+  //pruebas
+  /*
+  if(message.content == "prueba reaction"){
+    message.channel.send("mensaje de prueba").then(async(m) => {
+       await m.react("💗");
+       await m.react("⚔");
+       await m.react("🛡");
+       await m.react("🏃");
+    })
+  }
+  */
   
   // Listado de Comandos
   /*if(message.content == prefix +'help'){
@@ -244,12 +284,15 @@ client.on('message', async (message) => {
     
     return message.channel.send(helpEmbed)
   }*/
-  
+
   // Funciones del Bot
   functions(message, prefix)
+  counter(message)
   
   // Juegos
-  battlegame1(message)
+  battlegame(message)
+  
+  ojGame(message, prefix)
   
   // Frases
   frases(message)
@@ -259,24 +302,17 @@ client.on('message', async (message) => {
   
   //junko
   junko(message)
-
-  // Perseguir a Von
-  if (message.author.id == "548655370181279749" && !message.content.startsWith(prefix)) {
-    var followVon = [message.author +" Te estoy vigilando", message.author +" No se desconecte aún", message.author +" Pervertido", message.author +" Deja estar los malditos mensajes cifrados", "Estoy aquí "+ message.author]
-      return message.channel.send(followVon[Math.floor(Math.random() * followVon.length)])
-  }
   
   // Comandos del Bot
-  let cmd = client.command.get(command)
+  if (!message.content.toLowerCase().startsWith(prefix)) return
+  let cmd = client.command.get(command) || client.command.find((c) => c.alias.includes(command))
   if (cmd) {
-    return cmd.run(message, args, rolIT)
+    return cmd.run(message, args, rolIT, client)
   }
  
 
       
-})
-
-
+}) 
 
 // TOKEN BOT
 client.login(botconfig.token)

@@ -21,7 +21,7 @@ module.exports = {
 }*/
    
     if (!args[0]) {
-      return message.channel.send("Tienes que decirme lo que quieres que te responda "+ message.author)
+      return message.channel.send("Preguntame algo para que te pueda responder "+ message.author)
     }
         var varNickname = message.member.nickname;
         if (varNickname == null){

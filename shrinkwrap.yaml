@@ -1,7 +1,9 @@
 dependencies:
   discord.js: 11.5.1
-  megadb: 2.7.0
+  megadb: 3.0.0
   request: 2.88.0
+  smart-timeout: 2.0.4
+  unb-api: 1.0.5
 packages:
   /ajv/6.10.2:
     dependencies:
@@ -147,10 +149,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Xv+OPmhNVprkyysSgmBOi6YhSfo=
-  /graceful-fs/4.2.0:
+  /graceful-fs/4.2.2:
     dev: false
     resolution:
-      integrity: sha512-jpSvDPV4Cq/bgtpndIWbI5hmYxhQGHPC4d4cqBPb4DLniCfhJokdXhwhaDuLBGLQdvvRum/UiX6ECVIPvDXqdg==
+      integrity: sha512-IItsdsea19BoLC7ELy13q1iJFNmd7ofZH5+X/pJr90/nRoPEX0DJo1dHDbgtYWOhJhcCgMDTOw84RZ72q6lB+Q==
   /har-schema/2.0.0:
     dev: false
     engines:
@@ -220,14 +222,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==
-  /megadb/2.7.0:
+  /megadb/3.0.0:
     dependencies:
-      graceful-fs: 4.2.0
+      graceful-fs: 4.2.2
       mkdirp: 0.5.1
       path: 0.12.7
     dev: false
     resolution:
-      integrity: sha512-oq6e45um/ZCmOgo8GP6nH6eDoSsN+gi83hnjSzAHHUDGQRKEvHgbijpZVZMxqhcfiZSu83whJca85Z4KJXG32Q==
+      integrity: sha512-gzpl6lvXvHEvAYJ3jR3H0RPFvxE1PIOSy7SPgAVs6bTc8AovfCvrhM/1FxNI0jK9Hlt9c7AOQ0xnFuYHzHqyXQ==
   /mime-db/1.40.0:
     dev: false
     engines:
@@ -333,6 +335,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+  /smart-timeout/2.0.4:
+    dev: false
+    resolution:
+      integrity: sha512-Q3fwVHUj23MR37l7t2CgSn5oi94KEQYhRai+AupdYMobU55GQaGEGfaaaHIrqt1MpcEuHh93Eu9JBrJLI3QIxQ==
   /snekfetch/3.6.4:
     deprecated: use node-fetch instead
     dev: false
@@ -378,6 +384,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-kcoMoKTPYnoeS50tzoqjPY3Uv9axeuuFAZY9M/9zFnhoVvRfxz9K29IMPD7jGmt2c8SW7i3gT9WqDl2+nV7p4A==
+  /unb-api/1.0.5:
+    dependencies:
+      request: 2.88.0
+    dev: false
+    resolution:
+      integrity: sha512-DTnIx/u08j+wxLCkuqXEg3SHhSLiaL4oRrEegY77Dt38lBx2wjHQUZ4+57butqBzmdJLRgw5prr1Zj2ky0g0wQ==
   /uri-js/4.2.2:
     dependencies:
       punycode: 2.1.1
@@ -416,5 +428,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   discord.js: ^11.5.1
-  megadb: ^2.7.0
+  megadb: ^3.0.0
   request: ^2.88.0
+  smart-timeout: ^2.0.4
+  unb-api: ^1.0.5

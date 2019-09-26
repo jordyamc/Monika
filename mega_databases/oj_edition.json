@@ -1,0 +1,14 @@
+{
+  "status_edition": {
+    "estado": 1
+  },
+  "606078060298633216": {
+    "estadoEd": 0,
+    "nombre": 0,
+    "vida": 0,
+    "ataque": 0,
+    "defensa": 0,
+    "evasion": 0,
+    "puntos": 0
+  }
+}

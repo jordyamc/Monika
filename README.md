@@ -1,2 +1,0 @@
-# Monika
-Monika bot

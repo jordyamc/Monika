@@ -1,0 +1,11 @@
+{
+  "version": "1.0.2",
+  "prefix": "/",
+  "secret": 0,
+  "token": "NTU1ODY2NTIzMzM2NTcyOTY1.XXqd9w.nf3yGhNEJX34Y9NHGDTvYkTA_GQ",
+  "tokenNormal": "NjA4NDkzNTQ4MTc3OTgxNDkx.XUyjkg.r9itC44Make0EPFM_-OXXJ01MEU",
+  "tokenDB": "73ec82bce6a54f44ad5749f2428fe5ff",
+  "tokenUBAPI": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMzU1MTA0MDAzNTcyNDk4NDM1IiwiaWF0IjoxNTYyMjYyMTg0fQ.k1ulwHnvf2vwnYy3LOJkijQkpkc7mBem_PkLDzpeWSc",
+  "rolIT": "IT Admin"
+  
+}

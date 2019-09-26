@@ -1,0 +1,19 @@
+{
+  "13": {
+    "author": "138274135578116096",
+    "server": "606076389422268416",
+    "createdAt": "2019-09-21T01:34:38.325Z",
+    "expiresAt": "2019-09-21T01:35:00.327Z",
+    "title": "esto es una prueba (pog)",
+    "roles": [],
+    "options": {
+      "option 1 so awesome": 0,
+      "option 2 not awesome": 0,
+      "option 3 THA BEST ONE": 0
+    },
+    "usersVoted": [],
+    "visible": false,
+    "anonymous": false
+  },
+  "idGen": 22
+}

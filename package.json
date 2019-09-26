@@ -1,0 +1,13 @@
+{
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "megadb": "^3.0.0",
+    "request": "^2.88.0",
+    "unb-api": "^1.0.5",
+    "smart-timeout": "^2.0.4"
+  }
+}

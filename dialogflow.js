@@ -28,7 +28,7 @@ module.exports = {
         (error, response, body) => 
         {
           if(error) {
-            return console.log(error);
+            //return console.log(error);
           }
           var resp= JSON.parse(body);
           var mensajeResp= resp.result.fulfillment.speech ;

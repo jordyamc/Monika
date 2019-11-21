@@ -52,3 +52,36 @@ MINIJUEGOS
  - Carreras
 
 Ganar te saca un % variante dependiendo del dinero del pozo
+
+
+
+
+
+
+
+
+Lo que se va a hacer con el nuevo sistema de economía es hacer que ese número no pueda ni subir ni bajar. Como se hará?
+Se creará un ***banco*** el cual tendrá parte del dinero del server guardado (iniciará con un 69% unos 600 millones aprox.)
+
+Todo usuario podrá **obtener dinero del banco** haciendo ***work*** con el siguiente cd:
+ - 24h work por usuario normal
+ - 12h work por subs de twitch
+ - 8h work por nitro boost
+ - 6h work por nitro + sub
+
+El **work** dará una cantidad aleatoria que irá variando por el dinero del banco:
+ - Si el banco tiene más de 300 millones, el work dará entre 8k y 10k
+ - Si el banco tiene entre 300M y 260M, el work dará entre 6k y 8k
+ - Pues así sucesivamente hasta los 180M
+_Si tienes más de 3 Millones en el banco personal, el work te dará el 50%_
+
+Como se **rellena el dinero del banco**? Pues comprando items y pagando los impuestos
+Impuestos? Si impuestos. Los impuestos se cobrarán mensualmente a cada usuario. Viene a ser 50k por cada club en el que estés, así que si estás en 4 clubes tendrás que pagar 200k de impuestos. 
+
+Evidentemente es difícil mantener 4 clubes, pero si se puede mantener 2 clubes (seguramente 3) facilmente, para el 4 solo te queda apostar y ya.
+
+Que no te da para mantener un club, pero de vez en cuando quieres pasarte por este? Para ello, todos los clubs que quieran (decisión de las empanadas), podrán tener una peluca del club, la cual permitirá el acceso al club por cierto tiempo a todos los usuarios que quieran.
+
+Y con dinero de las pelucas que se hará? Todos los clubes que quieran (a decisión de las empanadas) podrán tener una cuenta de club, la cual todo el dinero de las pelucas irá hacia este mismo.
+
+Y que es eso del banco/cuenta de club?: Cada club (a decisión de las empanadas) podrá tener dicha cuenta, en esta cuenta se agregará el dinero que se gane con las pelucas, también si los usuarios así lo desean podrán meter el dinero que quieran. Servirá para que la empanada de dicho club pueda sacar el dinero para repartirlo entre usuarios de la forma que desee (ya sea con eventos, o que si a _alguien_ le falta dinero para continuar en el club, pues se puede decidir donarle de este mismo)

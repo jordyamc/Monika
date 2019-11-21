@@ -1,9 +1,0 @@
-module.exports = {
-  name:'',
-  alias:[],
-  description:'',
-  
-  run: async (message, args, rolIT, client) => {
-  
-  }
-}

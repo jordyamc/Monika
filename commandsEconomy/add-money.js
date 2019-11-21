@@ -9,11 +9,12 @@ module.exports = {
 
     run: async (message, args, rolIT, client) => {
         
-        if (!message.member.hasPermission('ADMINISTRATOR')) return ("Me estás intentando atracar? A ver si te tendré de warnear!")
+        if (!message.member.hasPermission('ADMINISTRATOR')) return ("Me estás intentando atracar? A ver si te tendré que warnear!")
 
         let dineroBanco = await bank.obtener(`${message.guild.id}.bank.money`)
         let user = message.mentions.users.first()
         let dineroGive = args[1]
+        let moneda = await bank.obtener(`${message.guild.id}.moneda`)
 
         if (dineroBanco - dineroGive < 0){
             return message.channel.send("No tengo tanto dinero, mal rollo " + message.author)
@@ -27,7 +28,7 @@ module.exports = {
         let giveEmbed = new Discord.RichEmbed()
             .setTitle("Donación")
             .setColor('#42f452')
-            .setDescription(`${user} a ganado ${conv(dineroGive)} <:monocoin:623298856309751808>`)
+            .setDescription(`${user} a ganado ${conv(dineroGive)} ${moneda}`)
 
         return message.channel.send(giveEmbed)
 

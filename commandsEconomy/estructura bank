@@ -1,0 +1,13 @@
+{
+    "guild id": {
+        "moneda": "<:name:id:>",
+        "role": {
+            "rolename": {
+                "admin": "id_user",
+                "money": value,
+                "icon": "icon_url",
+                "name": "bank_name"
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+const Discord = require('discord.js')
+const db = require('megadb')
+let  = new db.crearDB('')
+
+module.exports = {
+  name:'',
+  alias:[],
+  description:'',
+  
+  run: async (message, args, rolIT, client) => {
+  
+  }
+}

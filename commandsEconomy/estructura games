@@ -1,0 +1,15 @@
+{
+    "rr": {
+        "channel.id": {
+            "time": val
+            "playerN": {
+                "player": "id"
+                "money": val
+            }
+            "playerN": {
+                "player": "id"
+                "money": val
+            }
+        }
+    }
+}

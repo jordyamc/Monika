@@ -35,15 +35,24 @@ module.exports = {
             return message.channel.send("No puedes enviar dinero que no tienes")
         }
 
-        bank.restar(`${message.guild.id}.${author.id}.money`, dinero).catch(error => message.channel.send("Error al hacer la transferencia ***restar*** => "+error))
-        bank.sumar(`${message.guild.id}.${user.id}.money`, dinero).catch(error => message.channel.send("Error al hacer la transferencia ***sumar*** => " + error))
+        if(args[1] > 300000){
+            return message.channel.send("No me dejan traficar con tanto, sumimasen")
+        }
+
+        if (user == client.user){
+            bank.sumar(`${message.guild.id}.bank.money`, dinero).catch(error => message.channel.send("Error al hacer la transferencia ***sumar*** => " + error))
+        } else {
+            bank.sumar(`${message.guild.id}.${user.id}.money`, dinero).catch(error => message.channel.send("Error al hacer la transferencia ***sumar*** => " + error))
+        }
+
+        bank.restar(`${message.guild.id}.${author.id}.money`, dinero).catch(error => message.channel.send("Error al hacer la transferencia ***restar*** => " + error))
 
         var conv = (dinero) => String(dinero).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
         let giveEmbed = new Discord.RichEmbed()
             .setTitle("Donación")
             .setColor('#66bb6a')
-            .setDescription(`${author} a donado ${conv(dinero)} <:monocoin:623298856309751808> a ${user}`)
+            .setDescription(`${author} a donado ${conv(dinero)} ${moneda} a ${user}`)
 
         return message.channel.send(giveEmbed)
 

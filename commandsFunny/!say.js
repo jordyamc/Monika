@@ -1,9 +1,12 @@
 const Discord = require('discord.js')
 
+var name = '!say';
+var alias = [];
+var cat = 'admin';
+
 module.exports = {
-  name:'!say',
-  alias:[],
-  description:'Repite el mensaje escrito y elimina el mensaje del usuario',
+  name: name,
+  alias: alias,
   
   run: (message, args, rolIT) => {
     
@@ -17,6 +20,13 @@ module.exports = {
     }
     
   }
+}
+
+module.exports.help = {
+  name: name,
+  alias: alias,
+  categoria: 'admin',
+  description: 'Repite el mensaje escrito y elimina el mensaje del usuario',
 }
 
 /*

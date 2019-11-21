@@ -10,16 +10,18 @@ module.exports = {
     
     if(message.mentions.users.first()){
       let killEmbed = new Discord.RichEmbed()
-		    .setDescription(`**Are you ready for die ${message.mentions.users.first()}?**`)
+		    .setDescription(`**Are you ready to die ${message.mentions.users.first()}?**`)
         .setColor('#4d0702')
-		    .setImage(killImg[Math.floor(Math.random() * killImg.length)])
+        .setImage(killImg[Math.floor(Math.random() * killImg.length)])
+        .setFooter("IT Crowd", "https://cdn.discordapp.com/emojis/562075100116156418.png")
     
       return message.channel.send(killEmbed)
     } else {
       let killEmbed = new Discord.RichEmbed()
 		    .setDescription(`Tienes que decirme a quien quieres matar ${message.author}`)
         .setColor('#4d0702')
-		    .setImage(killImg[Math.floor(Math.random() * killImg.length)])
+        .setImage(killImg[Math.floor(Math.random() * killImg.length)])
+        .setFooter("IT Crowd", "https://cdn.discordapp.com/emojis/562075100116156418.png")
     
       return message.channel.send(killEmbed)
     }

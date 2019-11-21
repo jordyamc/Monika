@@ -36,13 +36,15 @@ module.exports = {
 		    .setDescription(`${message.author} was sipping with ${message.mentions.users.first()}`)
         .setColor('#426800')
 		    .setImage(sip[Math.floor(Math.random() * sip.length)])
-    
+        .setFooter("IT Crowd", "https://cdn.discordapp.com/emojis/562075100116156418.png")
+   
       return message.channel.send(sipEmbed)
     } else {
       let sipEmbed = new Discord.RichEmbed()
 		    .setDescription(`${message.author} was sipping`)
         .setColor('#426800')
 		    .setImage(sip[Math.floor(Math.random() * sip.length)])
+        .setFooter("IT Crowd", "https://cdn.discordapp.com/emojis/562075100116156418.png")
     
       return message.channel.send(sipEmbed)
     }

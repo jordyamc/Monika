@@ -1,0 +1,1 @@
+{"version":3,"file":"IDbConnection.js","sourceRoot":"","sources":["../../../../src/interfaces/megadb/IDbConnection.ts"],"names":[],"mappings":";;;;;;;;;AAAA,sFAAuE;AAEvE,IAAiB,MAAM,CAItB;AAJD,WAAiB,MAAM;IACnB,SAAgB,OAAO,CAAC,IAAY,EAAE,GAAY;QAC9C,OAAO,MAAM,CAAC,OAAO,CAAC,IAAI,EAAE,GAAG,CAAC,CAAC;IACrC,CAAC;IAFe,cAAO,UAEtB,CAAA;AACL,CAAC,EAJgB,MAAM,GAAN,cAAM,KAAN,cAAM,QAItB"}

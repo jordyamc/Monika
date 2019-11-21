@@ -1,0 +1,8 @@
+{
+    "version": "1.0.2",
+    "prefix": "/",
+    "secret": 0,
+    "tokenDB": "73ec82bce6a54f44ad5749f2428fe5ff",
+    "tokenUBAPI": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMzU1MTA0MDAzNTcyNDk4NDM1IiwiaWF0IjoxNTYyMjYyMTg0fQ.k1ulwHnvf2vwnYy3LOJkijQkpkc7mBem_PkLDzpeWSc",
+    "rolIT": "IT Admin"
+  }

@@ -298,7 +298,7 @@ module.exports = {
         } else { // New possible game
             if (isCommand(ACTION_CHALLENGE)) {
                 setTimeOut(message.channel);
-                if (message.mentions.members === 0) { // General battle, wait for other player
+                if (message.mentions.members.size === 0) { // General battle, wait for other player
                     let player1Id = message.author.id.toString();
                     let animal = animals.randomItem();
                     let json = {

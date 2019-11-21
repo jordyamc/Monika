@@ -57,7 +57,7 @@ module.exports = {
         " Si me dieran permiso te lo diría "+varNickname +" ",
         " Mejor lanza una moneda a ver que te sale ",
         " Sí ",
-        " No ",        //si y no sale 2 veces  <<--- si las coloque asi para que tengan mayor provabilidad de salir
+        " No ",   
         "  "+varNickname +", aumenta tu cosmos y vuelve a preguntar  ",
         " Aumenta tu Ki y pregunta de nuevo pequeño gusano ",
         " No lo se "+varNickname +", yo creía que buscarse en Google significaba otra cosa ",
@@ -74,14 +74,15 @@ module.exports = {
         " Junkitochan es muy buena preguntale a ella... Pero no le hagas un tag...",        
         " No.. Malo... Malo "+varNickname +", malo... Muy malo",      
         " 1 ",
-        " 0 "
+        " 0 ",
+        "En realidad yo tengo todas las respuestas, pero en ocaciones no quiero responder asi que divago un poco",
+        "Yo lo se todo, pero no todo lo comparto con simples mortales",
+        "Se la respuesta porque vi el codigo fuente, pero no se como explicarlo"
       ]
   
     var respuesta8ball = x[Math.floor(Math.random() * x.length)]
      
    return message.channel.send(respuesta8ball)    
    
-    
-    
   }
 }

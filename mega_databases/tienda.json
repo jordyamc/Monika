@@ -1,0 +1,233 @@
+{
+  "606076389422268416": {
+    "item": {
+      "ID1572000800650": {
+        "name": "membresía",
+        "price": "75000",
+        "icon": "💳",
+        "desc": "Para entrar en un club",
+        "usage": "Ahora puedes entrar en un club",
+        "role": "635908828843737089"
+      },
+      "ID1572000805760": {
+        "name": "item3",
+        "price": "1000000",
+        "icon": "<:kizunaPog:606190798471430198>",
+        "desc": "KizunaPog",
+        "usage": "Pues otro item más",
+        "role": "false"
+      },
+      "candado": {
+        "name": "Candado",
+        "price": 3000000,
+        "icon": "🔒",
+        "desc": "Compra de un candado extra para las waifus.",
+        "usage": "Taggea a un mod para que te done el candado.",
+        "role": "false",
+        "users1": [
+          "391144781968965632",
+          "245257385076195328",
+          "542915597239844878",
+          "492903419460452384",
+          "226457982773362688",
+          "341721252416847872",
+          "287693022244896770",
+          "234100958148296704",
+          "548655031914725405",
+          "137320643267002368",
+          "548655141230739456",
+          "466608022781820930",
+          "539271394165260288",
+          "279455592207351808",
+          "462855179369447434",
+          "461710709663858688",
+          "315429469164797953",
+          "384047659968757761",
+          "451009929952886795",
+          "444030050904440832",
+          "343171161128960003",
+          "319325145934069760",
+          "552964337174839307",
+          "416780407590354964",
+          "287346837730361354",
+          "393843892442628102",
+          "200815843259449344",
+          "388133737768157185",
+          "293120757272412161",
+          "247073874951405578",
+          "551151474588123148",
+          "324296852818100229",
+          "442873852511649822",
+          "440519702368878602",
+          "425352671990382605",
+          "340536217240338432",
+          "451594340230234133",
+          "138274135578116096",
+          "338163254079782912",
+          "570045522061295697"
+        ],
+        "users2": "226457982773362688",
+        "users3": [
+          "234100958148296704",
+          "137320643267002368",
+          "462855179369447434",
+          "138274135578116096"
+        ]
+      },
+      "millionDolar": {
+        "name": "Million Dollar Beibi",
+        "price": 1000000,
+        "icon": "<:monocoins:560909845033648151>",
+        "desc": "Podrás poner una waifu a 1M de precio",
+        "usage": "Ahora ya puedes poner una waifu a 1 millón",
+        "role": "false",
+        "users1": [
+          "0"
+        ]
+      },
+      "ID1573825968360": {
+        "name": "Tablon de Ventas",
+        "price": 5000,
+        "icon": "",
+        "desc": "Permiso para publicar una waifu a la venta. Solo 1 por item comprado",
+        "usage": "Informa a un <@&635908828843737089>",
+        "role": "635908828843737089"
+      }
+    },
+    "membresia": {
+      "sinvoz": {
+        "price": 75000,
+        "icon": "<:sinvoz:556325733937446912>",
+        "name": "Los Sin Voz",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "fate": {
+        "price": 75000,
+        "icon": "<:fate:556332962799419392>",
+        "name": "Fate",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "oreo": {
+        "price": 75000,
+        "icon": "<:oreo:556325702970900549>",
+        "name": "Oreo",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "henculto": {
+        "price": 75000,
+        "icon": "<:henculto:564505823427166303>",
+        "name": "Henculto",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "artistas": {
+        "price": 75000,
+        "icon": "<:artistas:601207869051764767>",
+        "name": "Artistas",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "monogatari": {
+        "price": 75000,
+        "icon": "<:monogatari:556325680133177344>",
+        "name": "Monogatari",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "toldboden": {
+        "price": 75000,
+        "icon": "<:toldboden:557380883112525834>",
+        "name": "Toldboden",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "battleroyal": {
+        "price": 75000,
+        "icon": "<:Battleroyal:566041148611756033>",
+        "name": "Battleroyal",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "scriptio": {
+        "price": 75000,
+        "icon": "<:scriptio:556325719932928000>",
+        "name": "Scriptio",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "itcrowd": {
+        "price": 75000,
+        "icon": "<:itcrowd:562075100116156418>",
+        "name": "IT Crowd",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "nocturnos": {
+        "price": 75000,
+        "icon": "<:Nocturnos:571345022772051968>",
+        "name": "Nocturnos",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "esperanzas": {
+        "price": 75000,
+        "icon": "<:esperanzas:556332981279522837>",
+        "name": "Esperanzas",
+        "role": "false",
+        "users": [
+          "0"
+        ]
+      },
+      "ID1572382106255": {
+        "name": "Test1",
+        "price": 75000,
+        "icon": "<:cifrado:612480770321154049>",
+        "role": "635908828843737089",
+        "desc": "_ _",
+        "users": [
+          "355104003572498435",
+          "355104003572498435",
+          "355104003572498435",
+          "355104003572498435",
+          "355104003572498435",
+          "0"
+        ]
+      }
+    },
+    "peluca": {
+      "ID1572994543915": {
+        "name": "IT Crowd",
+        "price": "1000",
+        "icon": "<:ITCrowd:606191070971166721>",
+        "role": "635908828843737089",
+        "time": "120000",
+        "desc": "_ _"
+      }
+    }
+  }
+}

@@ -6,62 +6,85 @@ module.exports = {
   description:'',
   
   run: async (message, args, rolIT, client) => {
-    console.log(args)
-    
-    
-    if(!args[1] && !message.mentions.channels.first()){
-      console.log(`https://discordapp.com/channels/${message.channel.id}/${args[0]})`)
-      message.channel.fetchMessage(args[0]).then(m => {
-        let quoteEmbed = new Discord.RichEmbed()
-          .setColor('#ff9626')
-          .setDescription(m.author)
-          .addField(m.content, `[Ir al mensaje](https://discordapp.com/channels/${m.guild.id}/${m.channel.id}/${args[0]})`)
-          .setTimestamp()
-	        .setFooter("IT Crowd | #"+m.channel.name, "https://cdn.discordapp.com/emojis/562075100116156418.png")
-        message.delete()
-        return message.channel.send(quoteEmbed)
-      })
-      
-    } else if(args[2] && message.mentions.channels.first()){
-      message.mentions.channels.first().fetchMessage(args[0]).then(m => {
-        let quoteEmbed = new Discord.RichEmbed()
-          .setColor('#ff9626')
-          .setDescription(m.author)
-          .addField(m.content, message.author)
-          .addField(args.slice(2).join(" "), `[Ir al mensaje](https://discordapp.com/channels/${m.guild.id}/${m.channel.id}/${args[0]})`)
-          .setTimestamp()
-	        .setFooter("IT Crowd | #"+m.channel.name, "https://cdn.discordapp.com/emojis/562075100116156418.png")
-        message.delete()
-        return message.channel.send(quoteEmbed)
-      })
-      
-      
-    } else if(args[1] && !message.mentions.channels.first()){
-      message.channel.fetchMessage(args[0]).then(m => {
-        let quoteEmbed = new Discord.RichEmbed()
-          .setColor('#ff9626')
-          .setDescription(m.author)
-          .addField(m.content, message.author)
-          .addField(args.slice(1).join(" "), `[Ir al mensaje](https://discordapp.com/channels/${m.guild.id}/${m.channel.id}/${args[0]})`)
-          .setTimestamp()
-	        .setFooter("IT Crowd | #"+m.channel.name, "https://cdn.discordapp.com/emojis/562075100116156418.png")
-        message.delete()
-        return message.channel.send(quoteEmbed)
-      })
-      
-    } else if(!args[2] && message.mentions.channels.first()){
-      message.mentions.channels.first().fetchMessage(args[0]).then(m => {
-        let quoteEmbed = new Discord.RichEmbed()
-          .setColor('#ff9626')
-          .setDescription(m.author)
-          .addField(m.content, `[Ir al mensaje](https://discordapp.com/channels/${m.guild.id}/${m.channel.id}/${args[0]})`)
-          .setTimestamp()
-	        .setFooter("IT Crowd | #"+m.channel.name, "https://cdn.discordapp.com/emojis/562075100116156418.png")
-        message.delete()
-        return message.channel.send(quoteEmbed)
-      })
-    } else {
-      return message.channel.send("Error")
-    }
+    var canal = message.mentions.channels.first() || message.channel
+
+        canal.fetchMessage(args[0]).then(async m => {
+
+            // MESSAGE QUOTE
+                // Embed quote message
+            var quoteEmbed = new Discord.RichEmbed()
+                .setColor('#5dbf4e')
+                .setAuthor(m.author.tag, m.author.avatarURL)
+
+            // if not message
+            if (!args[0]) {
+                quoteEmbed.addField("Faltan parametros", "``quote <message id> [channel] [text]``")
+                return message.channel.send(quoteEmbed)
+            }
+
+            // Text descriptions
+            if (m.content != null) quoteEmbed.setDescription(m.content)
+
+            // Get img
+            m.attachments.forEach(attachURLm)
+
+            function attachURLm(item) {
+                quoteEmbed.setImage(item.url)
+            }
+
+
+
+            quoteEmbed.setFooter(`#${m.channel.name}`)
+            // Embeds
+            for (let embed of m.embeds) {
+                if (embed.title != undefined) quoteEmbed.setTitle(embed.title)
+                if (embed.description != undefined) quoteEmbed.setDescription(embed.description)
+                if (embed.url != undefined) quoteEmbed.setURL(embed.url)
+                if (embed.author != undefined) quoteEmbed.setAuthor(embed.author.name, embed.author.iconURL)
+                if (embed.thumbnail != undefined) quoteEmbed.setThumbnail(embed.thumbnail.url)
+                if (embed.image != undefined) quoteEmbed.setImage(embed.image.url)
+                if (embed.video != undefined) quoteEmbed.setImage(embed.video.url)
+                if (embed.footer != null) {
+                    if (embed.footer.text != undefined) quoteEmbed.setFooter(embed.footer.text)
+                    if (embed.footer.iconURL != undefined) quoteEmbed.setFooter(embed.footer.iconURL)
+                }
+
+                // for (let field of embed.fields) {
+                //     if (field.name != null) quoteEmbed.addField(field.name, field.value)
+                // }
+            }
+
+            quoteEmbed.addField("_ _", `[Ir al mensaje](https://discordapp.com/channels/${m.guild.id}/${canal.id}/${args[0]})`)
+            quoteEmbed.setTimestamp()
+
+            // Send quote
+            message.channel.send(quoteEmbed).then(() => {
+              message.delete()
+
+            // MESSAGE USER
+            // Embed quote user
+            var quoteEmbed2 = new Discord.RichEmbed()
+                .setColor('#db5151')
+                .setAuthor(message.author.tag, message.author.avatarURL)
+
+            var slice = 0
+            if (!message.mentions.channels.first()) slice = 1
+            else slice = 2;
+
+            if (!args[slice]) return
+            quoteEmbed2.setDescription(args.slice(slice).join(" "))
+
+            message.attachments.forEach(attachURLmsg)
+            function attachURLmsg(item) {
+                quoteEmbed2.setImage(item.url)
+            }
+              
+            quoteEmbed2.setFooter(`#${message.channel.name}`)
+
+            message.channel.send(quoteEmbed2)
+            return
+        
+            })
+          })
   }
 }

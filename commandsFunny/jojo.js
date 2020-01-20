@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 
 module.exports = {
   name:'jojo',
-  alias:[],
+  alias:['jojos'],
   description:"Frase aleatoria de Jojo's",
   
   run: (message) => {
@@ -35,10 +35,10 @@ module.exports = {
         name: "DI MOLTO",
         url: "https://cdn.glitch.com/2faabd6a-5ca0-433c-aaf2-a94a9de84311%2FDi%20molto.gif?v=1564685792745"
       },
-      /*{
+      {
         name: "Watashi no Doppio",
         url: "https://cdn.glitch.com/2faabd6a-5ca0-433c-aaf2-a94a9de84311%2FWatashi%20no%20Doppio.gif?v=1564685911362"
-      },// reclamo por spoiler*/
+      },// reclamo por spoiler (retirado el reclamo)
       {
         name: "ARI ARI ARI ARI ARI ARRIVEDERCI",
         url: "https://cdn.glitch.com/2faabd6a-5ca0-433c-aaf2-a94a9de84311%2FAri%20ari%20ari%20Arrivederci.gif?v=1564686061019"

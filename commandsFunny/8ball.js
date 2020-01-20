@@ -6,19 +6,6 @@ module.exports = {
   description:'Responde a la pregunta que le haces con un si, no y variables',
   
   run: (message, args) => {
-  
-/*function frecuenciaTipoMensaje(Action) {
-	switch(Action) {
-  case 'frecuencia':
-			var Probabilidad = ["1","0","2","0", "2", "1", "2","0","1","0"]
-			var  resp = Probabilidad[Math.floor(Math.random() * Probabilidad.length)];
-		break;
- 
-		default:        
-	}
-  console.log('Respuesta Shu: ' +resp)
-  return resp;
-}*/
    
     if (!args[0]) {
       return message.channel.send("Preguntame algo para que te pueda responder "+ message.author)
@@ -35,7 +22,7 @@ module.exports = {
         "  "+varNickname +", con el dinero todo es posible ",   
         " Sí ",
         " No ",
-        " No entiendo la necesidad de algunas personas de querer vivir una mentira ", //respuesta muy situacional segun yo <<--- en ocaciones sale muy exacta, por eso la coloque. Si gutan la quitan
+        " No entiendo la necesidad de algunas personas de querer vivir una mentira ", 
         " Algunas personas siempre necesitan que les reafirmen algo aún cuando ya saben la respuesta. Tu eres un ejemplo "+varNickname +" ",
         " "+varNickname +", los juanetes de tus pies así lo creen también ",
         " Tan cierto como que krilin morirá de nuevo ",
@@ -57,7 +44,7 @@ module.exports = {
         " Si me dieran permiso te lo diría "+varNickname +" ",
         " Mejor lanza una moneda a ver que te sale ",
         " Sí ",
-        " No ",   
+        " No ",       
         "  "+varNickname +", aumenta tu cosmos y vuelve a preguntar  ",
         " Aumenta tu Ki y pregunta de nuevo pequeño gusano ",
         " No lo se "+varNickname +", yo creía que buscarse en Google significaba otra cosa ",
@@ -84,5 +71,7 @@ module.exports = {
      
    return message.channel.send(respuesta8ball)    
    
+    
+    
   }
 }

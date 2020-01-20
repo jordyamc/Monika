@@ -1,1 +1,0 @@
-{"version":3,"file":"-restartMonika.js","sourceRoot":"","sources":["../../commandsFunny/-restartMonika.js"],"names":[],"mappings":"AACA,MAAM,CAAC,OAAO,GAAG;IACf,IAAI,EAAE,SAAS;IACf,KAAK,EAAC,EAAE;IACR,WAAW,EAAE,mBAAmB;IAEhC,OAAO,CAAC,OAAO,EAAE,MAAM;QACrB,OAAO,CAAC,OAAO,CAAC,IAAI,CAAC,oGAAoG,CAAC,CAAA;IAC5H,CAAC;IACD,MAAM,EAAE,CAAC;CACV,CAAA"}

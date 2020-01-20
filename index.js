@@ -1,46 +1,16 @@
-// NodeJS
+// ------- IT CROWD ------- //
+
 // Modulos
-const fs = require("fs");
-const Discord = require("discord.js");
-const db = require("megadb");
+const fs = require('fs')
+const Discord = require('discord.js')
+const db = require('megadb')
+const ydtl = require("ytdl-core")
+const ffmpeg = require("ffmpeg")
 
-const client = new Discord.Client();
-client.command = new Discord.Collection();
-
-
-
-  
-/*  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww */
-/*              Example class                    */
-/*  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww * /
-
-      // incluimos nuestra clase desde la ruta de origen de la misma 
-      const blankdemo00 = require("./dist/dist/src/implementations/moniframework/blank.js");
-
-      //   Metodos estaticos pueden ser usados sin la necesidad de  contar con una instancia de la clase
-      
-      let multiplicacion = blankdemo00.CalculadoraUsandoClass.multiplicacion(9, 1000);
-      console.log(multiplicacion);
-
-      
-      //Instanciamos nuestra clase
-      
-      const CALCULADORA_USANDO_CLASS = new blankdemo00.CalculadoraUsandoClass();
-
-      //Asignadmos el primer valor.
-      CALCULADORA_USANDO_CLASS.valorA = 98;
-
-      //Asignadmos el segundo valor.
-      CALCULADORA_USANDO_CLASS.valorB = 54;
+const client = new Discord.Client()
+client.command = new Discord.Collection()
 
 
-      //conseguimos la suma de los valores
-      let suma = CALCULADORA_USANDO_CLASS.suma;
-      console.log(suma);
-/*  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww */
-  
-
- 
 
 // Command handler
 const commandFun = fs
@@ -52,15 +22,17 @@ for (const fileFun of commandFun) {
   client.command.set(commandFunny.name, commandFunny);
 }
 
+
 const commandBank = fs
-  .readdirSync("./commandsEconomy")
+  .readdirSync("./commandsBank")
   .filter(f => f.endsWith(".js"));
 
 for (const fileBank of commandBank) {
-  let commandEconomy = require(`./commandsEconomy/${fileBank}`);
+  let commandEconomy = require(`./commandsBank/${fileBank}`);
   if (commandEconomy.init) commandEconomy.init(client);
   client.command.set(commandEconomy.name, commandEconomy);
 }
+
 
 const commandPoll = fs
   .readdirSync("./commandsPoll")
@@ -71,77 +43,64 @@ for (const filePoll of commandPoll) {
   if (cmdPoll.init) cmdPoll.init(client);
   client.command.set(cmdPoll.name, cmdPoll);
 }
-const { ojGame } = require("./oj_game.js");
 
-// Conexiones
-const botconfig = require("./config.json");
-const vida = require("./vida.js");
+
+
+// Connections
+const botconfig = require('./config.json')
+const vida = require('./vida.js')
 
 const { blChannels } = require("./dbfunctions/channels.js");
-
-const { function1db } = require("./dbfunctions/dbtest.js");
-
-const { functions } = require("./functions.js");
-
+const { followUsers } = require("./dbfunctions/followUser.js");
 const { economy } = require("./dbfunctions/economy.js");
 
-const { frases } = require("./frases.js");
+const { functions } = require("./functions.js");
 const { shunika } = require("./shunika.js");
-const { junko } = require("./junko.js");
+const { frases } = require("./frases.js");
 
 const { battlegame } = require("./battlegame.js");
-const { cardGame } = require("./cardsgame.js");
-const { counter } = require("./counter.js");
+const { snowFight } = require("./snow.js");
+
+const { ojGame } = require("./oj/oj_game.js");
+const { cardGame } = require("./oj/cardsgame.js");
+
+const { music } = require("./music.js");
 
 // Bases de Datos
-let dbprefix = new db.crearDB("prefix");
-let dbTest = new db.crearDB("keys");
+let dbprefix = new db.crearDB('prefix')
 let dbChannelsBL = new db.crearDB("channelBL");
-let bank = new db.crearDB("bank1");
-let users = new db.crearDB("users");
-let dbCards = new db.crearDB("oj_cards");
-let dbOjGame = new db.crearDB("oj_game");
-let usersLeave = new db.crearDB("usersLeave"); 
-let creditos = new db.crearDB("creditos")
 
-var version = botconfig.version;
+let bank = new db.crearDB('bank')
+let tienda = new db.crearDB('tienda')
+var work = new db.crearDB("work");
+
+let dbFollow = new db.crearDB('followUsers')
+
+let dbBattle = new db.crearDB('battle');
+
+let dbCards = new db.crearDB('oj_cards');
+let dbOjGame = new db.crearDB('oj_game');
+let dbUserCards = new db.crearDB('user_cards');
+
+let pollsDB = new db.crearDB('polls');
+
+var version = botconfig.version
+
+
 
 // Iniciar el BOT (Información sobre los Servers y el BOT)
-client.on("ready", () => {
+client.on('ready', () => {
   // Información Servidores Discord
-  console.log("Nombre del BOT: " + client.user.tag);
-  /*console.log("Servidores:")
-  client.guilds.forEach((guild) => {
-    console.log(" NS - " + guild.name)
-    guild.channels.forEach((channel) => {
-      console.log(` NCS -- ${channel.name} (${channel.type}) - ${channel.id}`)
-    }) 
-  })*/
+  console.log("Nombre del BOT: " + client.user.tag)
 
   // Personalización del BOT
-  client.user.setActivity("criaturas tridimensionales", { type: "WATCHING" });
-  //client.user.setActivity("/help", {type: "PLAYING"})
+  client.user.setActivity("criaturas tridimensionales", {type: "WATCHING"})
+  
+})
 
-  // Conección inicial
-  //var generalChannel = client.channels.get("555864606992760834")
-  //generalChannel.send("  HIII  ")
-});
 
- 
-client.on("guildMemberAdd", async member => {
-  if(usersLeave.tiene(`${member.guild.id}.${member.user.id}`)){
-    usersLeave.eliminar(`${member.guild.id}.${member.user.id}`)
-  }
-});
 
-/*
-
-// NOTA: esto da error, se debe corregir
-client.on("guildMemberRemove", async member => {
-  var time = Math.floor(message.createdAt.getTime() / 100000);
-  await usersLeave.establecer(`${member.guild.id}.${member.user.id}`, {time: time, user: member.user.tag})
-});
-*/
+// Auditoria de reacciones
 const events = {
   MESSAGE_REACTION_ADD: "messageReactionAdd",
   MESSAGE_REACTION_REMOVE: "messageReactionRemove"
@@ -180,168 +139,101 @@ client.on("raw", async event => {
 });
 
 client.on("messageReactionAdd", (reaction, user) => {
-  console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
+  //console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
 });
 
 client.on("messageReactionRemove", (reaction, user) => {
-  console.log(
-    `${user.username} removed their "${reaction.emoji.name}" reaction.`
-  );
+  //console.log(`${user.username} removed their "${reaction.emoji.name}" reaction.`);
 });
 
-// Hablar en el chat
-client.on("message", async message => {
+
+
+// Ejecución
+client.on('message', async (message) => {
+  return
+  
+  //console.log("User ID: " + message.author.username, message.author.id);
   if (message.guild === undefined) return;
   if (message.author.id === client.user.id) return;
+  if (message.channel.id == "562285619435536424") return; // contar numeros
+  if (message.channel.id == "588569991847084042") return // contar historias entre todos
 
-  // Establecer prefijo, command y argumentos
-  let prefix;
+  // Configuración del prefijo y comandos
+  let prefix
 
-  if (dbprefix.tiene(`${message.guild.id}`)) {
-    prefix = await dbprefix.obtener(`${message.guild.id}`);
-    console.log("Prefix DB: " + prefix);
-  } else {
-    prefix = botconfig.prefix;
-    console.log("Prefix config: " + prefix);
+  if(dbprefix.tiene(`${message.guild.id}`)){
+    prefix = await dbprefix.obtener(`${message.guild.id}`)
+    // console.log('Prefix DB: '+prefix)
+  }else{
+    prefix = botconfig.prefix
+    // console.log('Prefix base: '+prefix)
   }
 
-  let args = message.content.slice(prefix.length).split(/ +/);
-  let command = args.shift().toLowerCase();
+  message.prefix = prefix
+
+  let randomMitad = Math.floor(Math.random() * (2 - 1 + 1)) + 1
+  let randomCuarto = Math.floor(Math.random() * (1 - 4)) + 4
+
+  const args = message.content.slice(prefix.length).split(/ +/)
+	const command = args.shift().toLowerCase()
+  
 
   // Roles
-  var rolIT = message.guild.roles.find( r => r.name === "IT Crowd" || "everyone" );
-
-  // Pruebas
-  
-  if (message.content.includes("received")) {
-    return console.log("355104003572498435".removeRole('635908828843737089'))
-  }
-
-  /*
-      //console.log(message)
-      message.embeds.forEach((embed) => {
-          console.log(embed.fields)
-      });
-  */
-  if (message.content == "arrobaprueba") {
-    /* aca dejo como se hace para obtener la id del usuario el cual ha sido tagueado */
-    //var idUsuarioTageado = message.mentions.users.first().id;
-    /*FIN aca dejo como se hace para obtener la id del usuario el cual ha sido tagueado  */
-
-    var varNickname = message.member.user.tag;
-    if (varNickname == null) {
-      varNickname = "";
-    }
-    message.channel.send("<@" + varNickname + ">");
-  }
-
-  // Leer embeds
-  /*for (let embed of message.embeds) {
-    console.log(`
-    Title: ${embed.title}
-    Author: ${embed.author}
-    Description: ${embed.description}
-    `);
-    for (let field of embed.field) {
-      console.log(`
-      Field title: ${field.name}
-      Field value: ${field.value}
-      `);
-    }
-  }*/
-
-  if (message.content.toLowerCase().startsWith("test")) {
-    
-    return console.log(message.member)
-  }
-
-  /*for (let embed of message.embeds) {
-    message.channel.send(`
-    Title: ${embed.title}
-    Author: ${embed.author}
-    Description: ${embed.description}
-    `);
-    //
-  } //*/
+  var rolIT = message.guild.roles.get("641716726236577792") || message.guild.roles.find(r => r.name === "IT Crowd") || message.guild.roles.find(r => r.name === "everyone")
 
   // Ver Prefijo
-  if (message.content.toLowerCase() == "monika prefix") {
-    return message.channel.send("Prefijo actual: **" + prefix + "**");
+  if (message.content.toLowerCase() == 'monika prefix' || message.content == client.user.id.toString() + " prefix") {
+    return message.channel.send('Prefijo actual: **'+prefix+'**')
   }
 
+
+if (message.guild.id == "545720855578279958" || message.guild.id == "606076389422268416") {
+	economy(message,args, prefix, rolIT);
+}
   // Tag al Bot
-  if (
-    message.content.includes(client.user.id) &&
-    !message.content.startsWith(prefix)
-  ) {
+  if (message.content.includes(client.user.id) && !message.content.startsWith(prefix) && !message.content.startsWith("%") && randomMitad == 2) {
     var tagBot = [
       "**CALLATE** " + message.author.toString() + " **NO ME IMPORTA!**",
       "**NO ME TAGEES** " + message.author.toString() + " **QUE ME LA SUDA!**",
       "No quiero hablar " + message.author.toString() + ", mal rollo",
-      message.author.toString() +
-        ", en serio crees que alguien tan inferior como tu puede hablarme?",
-      message.author.toString() + " " + `<:monikaPing:618889335915413525>`
+      message.author.toString() + ", en serio crees que alguien tan inferior como tu puede hablarme?",
+      message.author.toString() + ` <:monikaPing:618889335915413525>`
     ];
-
-    return message.channel.send(
-      tagBot[Math.floor(Math.random() * tagBot.length)]
-    );
+    return message.channel.send(tagBot[Math.floor(Math.random() * tagBot.length)])
   }
+
 
   // Black List Channels
-  const datos = await dbChannelsBL.obtener(message.guild.id);
-
   blChannels(message, prefix, rolIT);
+  const datos = await dbChannelsBL.obtener(message.guild.id)
 
-  // Prevención de Bucle
+
+  // Prevención de Bucles y canales
   if (
-    message.author == client.user ||
-    message.author.id == "608493548177981491" ||
+    message.author == client.user || 
+    message.author.id == "555866523336572965" || 
     datos.includes(message.channel.id)
+    //message.author.bot
   ) {
-    return;
+    return
   }
+ 
+  //message.guild.members.get("423386107187560468").setNickname("No soy Natsu723")
 
-  // Bank
-  economy(message,args, prefix, rolIT);
-
-  // LO de perseguir
-  function1db(message, prefix, rolIT);
-
-  if (!dbTest.tiene(`${message.author.id}.key`)) return;
-  var keys = await dbTest.obtener(`${message.author.id}.key`);
-
-  if (keys == 1) {
-    let followMonika = [
-      "Porque no me liberas de aquí?",
-      "Solo tienes que saber... Just Monika",
-      "Pulsa Alt F4 para poder liberarme porfavor"
-    ];
-
-    return message.channel.send(
-      message.author +
-        " " +
-        followMonika[Math.floor(Math.random() * followMonika.length)]
-    );
-  }
-
-  
   // Comando para feedback
-  if (message.content.toLowerCase().startsWith(prefix + 'feed')) {
+  if (message.content.toLowerCase().startsWith(prefix +'feed')) {
     if (!args[0]) return message.channel.send('Te falta escribir la sugerencia')
     let embedFeed = await new Discord.RichEmbed()
-      .setColor('#0099ff')
-      .addField('User', message.author)
-      .addField('ID', message.author.id, true)
-      .addField('Suggest', args.join(" "))
-      .setTimestamp()
-
+    .setColor('#0099ff')
+    .addField('User', message.author + " "+ message.author.id)
+    .addField('Suggest', args.join(" "))
+    .setTimestamp()
+    
     client.guilds.get("606076389422268416").channels.get("606078194000461824").send(embedFeed).then(m => {
       m.react(client.emojis.get("621493290226941952"))
       m.react(client.emojis.get("621493343972491283"))
       m.react(client.emojis.get("621493322451517450"))
-    })
-    return message.channel.send('Sugerencia enviada exitosamente ' + message.author + '!')
+    }).then(message.channel.send('Sugerencia enviada exitosamente '+ message.author +'!')).catch(err => message.channel.send(err))
   }
   
   if (message.content.toLowerCase().startsWith(prefix +'bug')) {
@@ -356,148 +248,109 @@ client.on("message", async message => {
     client.guilds.get("606076389422268416").channels.get("639839345032822824").send(embedFeed)
     return message.channel.send('Reporte enviado exitosamente '+ message.author +'!')
   }
-
+       
+  
   // Cambiar Prefijo del Servidor
-  if (message.content.toLowerCase().startsWith(prefix + "prefix")) {
-    if (
-      !message.member.roles.has(rolIT.id) ||
-      !message.member.hasPermission("ADMINISTRATOR")
-    )
-      return message.channel.send(
-        "No eres tan privilegiado como para tocarme de esta manera ¬.¬"
-      );
-    if (!args[0]) {
-      return message.channel.send("Necesitas colocar el nuevo prefijo");
+  if (message.content.toLowerCase().startsWith(prefix+'prefix')) {
+    if(!message.member.roles.has(rolIT.id))
+      return message.channel.send("No tienes persmisos para cambiar el prefijo")
+    if(!args[0]) {
+      return message.channel.send("Necesitas colocar el nuevo prefijo")
     }
 
-    let pr = args.join(" ");
-    dbprefix.establecer(`${message.guild.id}`, pr);
-    return message.channel.send("Prefijo cambiado correctamente a " + args[0]);
+    let pr = args.join(' ')
+    dbprefix.establecer(`${message.guild.id}`, pr)
+      return message.channel.send("Prefijo cambiado correctamente a "+ args[0])
   }
+
 
   // Restablecer Prefijo
-  if (message.content == "/restartprefix") {
-    if (
-      !message.member.roles.has(rolIT.id) ||
-      !message.member.hasPermission("ADMINISTRATOR")
-    )
-      return message.channel.send(
-        "No eres tan privilegiado como para tocarme de esta manera ¬.¬"
-      );
-    dbprefix.establecer(`${message.guild.id}`, "/");
-    return message.channel.send("Prefijo restablecido correctamente");
+  if (message.content == '/restartprefix'){
+    if (!message.member.roles.has(rolIT.id) || !message.member.hasPermission("ADMINISTRATOR"))
+      return message.channel.send("No eres tan privilegiado como para tocarme de esta manera ¬w¬");
+    dbprefix.establecer(`${message.guild.id}`, "/")
+    return message.channel.send("Prefijo restablecido correctamente a ``/``")
   }
 
-  // Ver Prefijo
-  if (message.content == client.user.id.toString() + " prefix") {
-    return message.channel.send("Prefijo actual: **" + prefix + "**");
-  }
 
   // Información del Bot
-  if (message.content.startsWith(prefix + "info")) {
+  if (message.content.startsWith(prefix +"info")){
+
     let infoembed = new Discord.RichEmbed()
       .setTitle("Información del Bot")
       .setColor("#cf2958")
       .setThumbnail(client.user.displayAvatarURL)
-      //.setThumbnail("https://cdn.glitch.com/2faabd6a-5ca0-433c-aaf2-a94a9de84311%2Fmonika%20binario%20zoom.png?v=1568161296941")
       .addField("Nombre", client.user.username)
       .addField("Prefijo", prefix)
       .addField("Versión", version)
-      .setFooter(
-        "IT Crowd",
-        "https://cdn.discordapp.com/emojis/562075100116156418.png"
-      );
-
-    return message.channel.send(infoembed);
-  }
-
-  //pruebas
-  /*
-  if(message.content == "prueba reaction"){
-    message.channel.send("mensaje de prueba").then(async(m) => {
-       await m.react("💗");
-       await m.react("⚔");
-       await m.react("🛡");
-       await m.react("🏃");
-    })
-  }
-  */
-
-  // Listado de Comandos
-  /*if(message.content == prefix +'help'){
-    
-    for (const file of commandFiles) {
-	    let command = require(`./commands/${file}`)
-      var commandName = command.name
-      var commandDescription = command.description
-    }
-    
-    let helpEmbed = new Discord.RichEmbed()
-      .setColor('#00ff00')
-      .setTitle('Lista de comandos de '+ client.user.username)
-      .setDescription('Prefijo actual: ``'+ prefix +'``')
-      .addField(command.name, command.description)
       .setFooter("IT Crowd", "https://cdn.discordapp.com/emojis/562075100116156418.png")
-    
-    return message.channel.send(helpEmbed)
-  }*/
+
+    return message.channel.send(infoembed)
+  }
+
+  // Perseguir a Von
+  if (message.author.id == "548655370181279749" && !message.content.startsWith(prefix)) {
+    var followVon = [message.author + " Te estoy vigilando", message.author + " No se desconecte aún", message.author + " Pervertido", message.author + " Deja estar los malditos mensajes cifrados", "Estoy aquí " + message.author, message.author + " Termina lo que dices"]
+    return message.channel.send(followVon[Math.floor(Math.random() * followVon.length)])
+  }
 
   // Funciones del Bot
-  functions(message, prefix);
-  counter(message);
-
-  // Juegos
+  frases(message, client)
+  functions(message, args)
+  if (message.author.bot) return
   battlegame(message);
-
-  cardGame(message);
+  music(message, prefix, rolIT);
 
   ojGame(message, prefix);
-
-  // Frases
-  //frases(message);
-
-  // shunika
-  shunika(message);
-
-  //junko
-  //junko(message);
-
-
-  /*if (message.content.toLowerCase() == prefix+"help"){
-    for (const fileFun of commandFun) {
-      let commandFunny = require(`./commandsFunny/${fileFun}`);
-      let cmd = client.command.get(command);
-      let alias = client.command.find(c => c.alias.includes(command));
-      console.log(cmd, alias);
-    }
-  }*/
-
-  //console.log(commandFun.filter(r => r.help.categoria === 'general'(f => f.help.name)))
+  cardGame(message);
+  snowFight(message);
 
   
-  
+  followUsers(message, prefix, rolIT);
+
+  var keys = await dbFollow.obtener(`${message.author.id}.key`);
   
 
- 
-  
-   
-   
-  
-  
-  
   // Comandos del Bot
-  if (!message.content.toLowerCase().startsWith(prefix)) return;
-  let cmd =
-    client.command.get(command) ||
-    client.command.find(c => c.alias.includes(command));
-  if (cmd) {
-    let alias = cmd.alias;
-    let name = cmd.name;
-    let description = cmd.description;
-    //console.log(alias, name, description)
+  if (!message.content.toLowerCase().startsWith(prefix) || message.content.toLowerCase().startsWith(prefix+"snow")) return;
+  let cmd = client.command.get(command) || client.command.find(c => c.alias.includes(command));
+  if (cmd && message.content.toLowerCase().startsWith(prefix)) {
+    // let alias = cmd.alias;
+    // let name = cmd.name;
+    // let description = cmd.description;
+    // console.log(alias, name, description)
     return cmd.run(message, args, rolIT, client, prefix);
   }
-});
+
+  //shunika(message);
+  
+  
+
+  // Follow User
+  
+
+  if (keys == 1) {
+    let followMonika = [
+      "Porque no me liberas de aquí?",
+      "Solo tienes que saber... Just Monika",
+      "Pulsa Alt F4 para poder liberarme porfavor",
+      "Dos veces hacia atrás para liberarme de este cruel sitio",
+      "otaku",
+      "<a:JustMonika:571827698058526740>",
+      "\n<a:monikaDance1:640681784039964695>\n<a:monikaDance2:640681807901097984>\n<a:monikaDance3:640681818332332049>\n<a:monikaDance4:640681830236028928>"
+    ];
+
+    return message.channel.send(
+      message.author + " " + followMonika[Math.floor(Math.random() * followMonika.length)]
+    );
+  }
+
+  if (!message.content.toLowerCase().startsWith(prefix)) return;
+  
+  return;
+
+})
+
 
 // TOKEN BOT
-client.login(process.env.TOKEN);
+client.login(botconfig.token)

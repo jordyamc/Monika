@@ -2,27 +2,23 @@ const Discord = require('discord.js')
 
 module.exports = {
   name:'present',
-  alias:[],
+  alias:['gift'],
   description:'Envia un regalo sorpresa al usuario',
   
   run: (message, args) => {
     
     const present = [
       {
-        frase: 'una mierda kawaii!',
+        frase: 'una mierda kawaii',
         img: "https://cdn.glitch.com/2faabd6a-5ca0-433c-aaf2-a94a9de84311%2Fmierda_kawaii.png?v=1561055347968"
       },
       {
-        frase: "la cara de Makoto!",
+        frase: "la cara de Makoto",
         img: "https://cdn.glitch.com/2faabd6a-5ca0-433c-aaf2-a94a9de84311%2Fmakoto.png?v=1561055348230"
       },
       {
-        frase: "una Monika en forma chibi!",
+        frase: "a Monika en forma chibi!",
         img: "https://cdn.glitch.com/2faabd6a-5ca0-433c-aaf2-a94a9de84311%2Fmonika%20chibi.png?v=1567631292789"
-      },
-      {
-        frase: "",
-        img: ""
       }
     ]
     

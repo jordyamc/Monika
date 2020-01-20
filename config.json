@@ -1,9 +1,7 @@
 {
-  "version": "1.0.2",
+  "version": "1.1.0",
   "prefix": "/",
-  "secret": 0,
-  "tokenDB": "73ec82bce6a54f44ad5749f2428fe5ff",
+  "token": "NjA4NDkzNTQ4MTc3OTgxNDkx.XYzwzA.yIiRuh_eCL85rwvWpnvsE1iXNJM",
   "tokenUBAPI": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMzU1MTA0MDAzNTcyNDk4NDM1IiwiaWF0IjoxNTYyMjYyMTg0fQ.k1ulwHnvf2vwnYy3LOJkijQkpkc7mBem_PkLDzpeWSc",
-  "rolIT": "IT Admin"
-  
+  "rolIT": "IT Crowd"
 }

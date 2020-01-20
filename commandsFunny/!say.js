@@ -1,33 +1,21 @@
 const Discord = require('discord.js')
 
-var name = '!say';
-var alias = [];
-var cat = 'admin';
-
 module.exports = {
-  name: name,
-  alias: alias,
+  name:'!say',
+  alias:[],
+  description:'Repite el mensaje escrito y elimina el mensaje del usuario',
   
   run: (message, args, rolIT) => {
     
+    if (!message.member.roles.has(rolIT.id)) return
       
     message.delete(0)
     
-    if (message.mentions.channels.first() && message.member.roles.has(rolIT.id)){
+    if (message.mentions.channels.first() && message.mentions.channels.first().id != "562285619435536424"){
       message.mentions.channels.first().send(args.slice(1).join(" "))
     } else {
       message.channel.send(args.join(" "))
     }
     
   }
-}
-
-module.exports.help = {
-  name: name,
-  alias: alias,
-  categoria: 'admin',
-  description: 'Repite el mensaje escrito y elimina el mensaje del usuario',
-}
-
-/*
-message.mentions.channels.first()  */
+} 
